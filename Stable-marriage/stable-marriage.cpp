@@ -32,11 +32,17 @@ bool isStable(int marriage[], int col, int mp[][3], int wp[][3]) {
     for(int i = 0; i <col; i++) if(marriage[i] == marriage[col]) return false;
 
     //2. checks if current man likes previous women more than wife
-    for(int i= 0; i <col; i++){
+    for(int i= 0; i <3; i++){
       if (mp[col][i] < mp[col][marriage[col]]){
 
-        //2a. checks if previous woman likes current man more than husband
-        if(wp[i][col]< wp[i][marriage[i]]) return false;
+				//find previous woman's husband
+				for(int j=0; j<col;j++){
+					if(marriage[j]==i) {
+						//2a. checks if previous woman likes current man more than husband
+						if(wp[i][col]< wp[i][j]) return false;
+					}//if
+				}//for
+
       }//if
     }//for
 
