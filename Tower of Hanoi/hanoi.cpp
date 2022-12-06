@@ -21,7 +21,7 @@ int main(){
   to=0;
   candidate=1;
   move=0;
-  nOdd; //is n odd???
+  bool nOdd; //is n odd???
 
   //---------------------------------------------------------------
 
@@ -30,7 +30,7 @@ int main(){
     to = 1;
     nOdd=true;
   }
-  else if(n%2 == 1){
+  else{
     to = 2;
     nOdd=false;
   }
@@ -48,25 +48,22 @@ int main(){
 
     // get next "from tower" which is the smallest disk that was not moved last turn
     if(tower[(to+1)%3].back() < tower[(to+2)%3].back())
-      from=(to+1)%3;
-    else
-      from=(to+2)%3;
+         from=(to+1)%3;
+    else from=(to+2)%3;
 
     //get next "to tower" based on if n is odd---------------
     if(nOdd){
       // get next "to tower" which is the next closest tower available to the candidate
-      if()
-        to=0;
-      else
-        t0=0;
+      if(tower[from].back() < tower[(from+1)%3].back())
+           to=(from+1)%3;
+      else to=(from+2)%3;
     }
-    //get next "to tower" based on id n is even--------------
-    else{
+    //get next "to tower" based on if n is even--------------
+    else if(!nOdd){
       // get next "to tower"
-      if()
-        to=0;
-      else
-        t0=0;
+      if(tower[(from+2)%3].back() < tower[from].back())
+           to=(from+1)%3;
+      else to=(from+2)%3;
     }
 
     //get next candidate from the top of the "from tower"
