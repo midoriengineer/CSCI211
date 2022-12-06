@@ -23,6 +23,8 @@ int main(){
   move=0;
   nOdd; //is n odd???
 
+  //---------------------------------------------------------------
+
   // checks if n is odd or even to determine the starting "to" place
   if(n%2 == 1){
     to = 1;
@@ -33,6 +35,8 @@ int main(){
     nOdd=false;
   }
 
+  //---------------------------------------------------------------
+
   while(tower[1].size()<n+1){ //there are still rings to transfer to tower B = tower[1]
     //print
     cout <<"move no. " << ++move << ": Transfer ring " << candidate
@@ -42,26 +46,22 @@ int main(){
     tower[to].push_back(tower[from].back());
     tower[from].pop_back();
 
-    //get next "to tower" and "from tower" based on if n is odd
+    // get next "from tower" which is the smallest disk that was not moved last turn
+    if(tower[(to+1)%3].back() < tower[(to+2)%3].back())
+      from=(to+1)%3;
+    else
+      from=(to+2)%3;
+
+    //get next "to tower" based on if n is odd---------------
     if(nOdd){
-      // get next "from tower"
-      if()
-        from=0;
-      else
-        from=0;
-      // get next "to tower"
+      // get next "to tower" which is the next closest tower available to the candidate
       if()
         to=0;
       else
         t0=0;
     }
-    //get next "to tower" and "from tower" based on id n is even
+    //get next "to tower" based on id n is even--------------
     else{
-      // get next "from tower"
-      if()
-        from=0;
-      else
-        from=0;
       // get next "to tower"
       if()
         to=0;
@@ -72,10 +72,7 @@ int main(){
     //get next candidate from the top of the "from tower"
     candidate = tower[from].back();
 
-
-  }
-
-
+  }// end while loop
 
   return 0;
 }
