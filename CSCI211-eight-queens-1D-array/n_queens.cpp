@@ -12,7 +12,7 @@ void backtrack(int &col){
 	if(col==-1) col= 0;
 }
 
-//print chessboard
+//print solutions number
 void print(int q[], int &count, int n){
 	cout << "There are " << count << " solutions to the " << n << " queens problem" << endl;
 }
@@ -53,21 +53,21 @@ void nextRow(int q[], int &col, int &count, int n){
 
 int main() {
 
+		int col;
+		int count;
+
 		int n;
 		cout << "Enter the board size: ";
 		cin >> n;
-
-    //No rows sets for each queen
-    int col = -1;
-    int count = 0;
 
 		//loop through all board sizes from 1x1 through nxn
 		for(int temp_n = 1; temp_n <= n; temp_n++){
 
 			//create empty board
+			count=0;
+			col = -1;
 			int* q = new int[temp_n];
 			for(int i =0; i< temp_n; i++) q[i] = -1;
-
 
 			//loop places queens in rows by column
 			while(col < temp_n && q[col] < temp_n){
@@ -86,8 +86,6 @@ int main() {
 
 			//print and reset board to prepare for new board size
 			print(q, count,temp_n);
-			count=0;
-			col = -1;
 			delete [] q;
 
 		}//for loop
